@@ -22,7 +22,12 @@ const FormSchema = z.object({
     message: "Ім'я користувача не може бути менше ніж 5 символів.",
   }),
   password: z.string()
-})
+}).required(
+  {
+    username: true,
+    password: true,
+  }
+)
 
 export function InputForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -31,10 +36,6 @@ export function InputForm() {
       username: "",
       password: ""
     },
-    require:{
-        username: true,
-        password: true,
-    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
