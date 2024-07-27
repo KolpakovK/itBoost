@@ -20,8 +20,8 @@ const config = {
         fontFamily:{
             'display':['Dela Gothic One','ui-sans-serif', 'system-ui'],
             'sans': ['IBM Plex Sans','ui-sans-serif', 'system-ui'],
-            'serif': ['ui-serif', 'Georgia'],
-            'mono': ['ui-monospace', 'SFMono-Regular'],
+            'serif': ['IBM Plex Sans','ui-serif', 'Georgia'],
+            'mono': ['IBM Plex Sans','ui-monospace', 'SFMono-Regular'],
         },
         extend: {
             keyframes: {
