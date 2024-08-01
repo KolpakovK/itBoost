@@ -35,8 +35,7 @@ export const ScheduleSimpleItem:React.FC<ScheduleSimpleItemInterface> = ({image=
             </div>
 
             <div className="flex gap-2">
-                <Badge>{format(date, 'dd/MM/yyyy')}</Badge>
-                <Badge variant="outline">{format(date, 'kk:mm')}</Badge>
+                <Badge >{format(date, 'kk:mm')}</Badge>
             </div>
 
         </div>
@@ -72,15 +71,15 @@ export const GroupScheduleItems:React.FC<GroupScheduleItemsIterface> = ({items})
     return (
         <div className="flex flex-col gap-2">
 
-            {Object.keys(mappedItems).map((keyName) => (
-                <div className="flex p-4 rounded border border-gray-200 flex-col gap-2 bg-white hover:bg-gray-50 duration-150">
+            {Object.keys(mappedItems).map((keyName,index) => (
+                <div className="flex p-4 rounded border border-gray-200 flex-col gap-2 bg-white hover:bg-gray-50 duration-150" key={'mappedDay'+index}>
                     <div className="flex justify-between items-center">
                         <p className="flex-1 text-lg font-light text-gray-600">{format(keyName, 'dd MMMM yyyy - EEEE')}</p>
                     </div>
                     <hr />
                     
-                    {mappedItems[keyName].map((rowItem:any) => (
-                        <ScheduleSimpleItem name={rowItem.name} image={rowItem.image} short_name={rowItem.short_name} teacher={rowItem.teacher} date={rowItem.date}/>
+                    {mappedItems[keyName].map((rowItem:any,itemIndex:any) => (
+                        <ScheduleSimpleItem key={'mappedDay'+index+"Item"+itemIndex} name={rowItem.name} image={rowItem.image} short_name={rowItem.short_name} teacher={rowItem.teacher} date={rowItem.date}/>
                     ))}
                 </div>
             ))}
