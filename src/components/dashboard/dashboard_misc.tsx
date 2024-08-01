@@ -1,5 +1,7 @@
 import * as React from "react"
-import { format } from 'date-fns';
+import { format, setDefaultOptions } from 'date-fns';
+import { ru } from 'date-fns/locale'
+setDefaultOptions({ locale: ru })
 
 import {
     Avatar,
@@ -20,7 +22,7 @@ interface ScheduleSimpleItemInterface{
 
 export const ScheduleSimpleItem:React.FC<ScheduleSimpleItemInterface> = ({image="",short_name,name,teacher,date}) => {
     return (
-        <div className="flex gap-2 pb-2 items-center p-2 bg-white hover:bg-gray-100 duration-150 rounded">
+        <div className="flex gap-2 pb-2 items-center p-2 bg-transparent hover:bg-gray-200 duration-150 rounded">
 
             <Avatar>
                 <AvatarImage src={image} alt="@shadcn" />
@@ -68,14 +70,19 @@ export const GroupScheduleItems:React.FC<GroupScheduleItemsIterface> = ({items})
     const mappedItems = groupByDay(items);
 
     return (
-        <div>
+        <div className="flex flex-col gap-2">
 
-            <code>
-                {JSON.stringify(Object.keys(mappedItems), null, 2)}
-            </code>
-
-            {Object.keys(mappedItems).map((keyName,index) => (
-                <li>kek</li>
+            {Object.keys(mappedItems).map((keyName) => (
+                <div className="flex p-4 rounded border border-gray-200 flex-col gap-2 bg-white hover:bg-gray-50 duration-150">
+                    <div className="flex justify-between items-center">
+                        <p className="flex-1 text-lg font-light text-gray-600">{format(keyName, 'dd MMMM yyyy - EEEE')}</p>
+                    </div>
+                    <hr />
+                    
+                    {mappedItems[keyName].map((rowItem:any) => (
+                        <ScheduleSimpleItem name={rowItem.name} image={rowItem.image} short_name={rowItem.short_name} teacher={rowItem.teacher} date={rowItem.date}/>
+                    ))}
+                </div>
             ))}
 
         </div>

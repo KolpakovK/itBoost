@@ -13,7 +13,13 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-import { GraduationCap, ArrowRight, BadgeCheck, NotebookTabs } from "lucide-react"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle
+} from "@/components/ui/alert"
+
+import { GraduationCap, ArrowRight, BadgeCheck, NotebookTabs, Terminal } from "lucide-react"
 
 
 export default function Page(){
@@ -85,38 +91,62 @@ export default function Page(){
 
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 px-8 flex-1">
 
-            <Card className="lg:col-span-2">
-                <CardHeader>
-                    <CardDescription>Заняття на два тижні</CardDescription>
-                    <CardTitle>Графік заннять</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex flex-col gap-2">
-                        <GroupScheduleItems items={[
-                            {
-                                name: "Lesson",
-                                teacher: "Teachers name",
-                                short_name: "CN",
-                                date: new Date(2017, 0, 1)
-                            },
-                            {
-                                name: "Lesson",
-                                teacher: "Teachers name",
-                                short_name: "CN",
-                                date: new Date(2017, 0, 2)
-                            },
-                            {
-                                name: "Lesson",
-                                teacher: "Teachers name",
-                                short_name: "CN",
-                                date: new Date(2017, 0, 2)
-                            }
-                        ]}/>
-                    </div>
-                </CardContent>
-            </Card>
+                <Card className="lg:col-span-2 max-h-[550px] overflow-hidden flex flex-col">
+                    <CardHeader>
+                        <CardDescription>Заняття на два тижні</CardDescription>
+                        <CardTitle>Графік заннять</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-y-auto">
+                        <div className="flex flex-col gap-2">
+                            <GroupScheduleItems items={[
+                                {
+                                    name: "Lesson",
+                                    teacher: "Teachers name",
+                                    short_name: "CN",
+                                    date: new Date(2017, 0, 1)
+                                },
+                                {
+                                    name: "Lesson",
+                                    teacher: "Teachers name",
+                                    short_name: "CN",
+                                    date: new Date(2017, 0, 2)
+                                },
+                                {
+                                    name: "Lesson",
+                                    teacher: "Teachers name",
+                                    short_name: "CN",
+                                    date: new Date(2017, 0, 2)
+                                },
+                                {
+                                    name: "Lesson",
+                                    teacher: "Teachers name",
+                                    short_name: "CN",
+                                    date: new Date()
+                                }
+                            ]}/>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="lg:col-span-1 max-h-[550px] overflow-hidden flex flex-col">
+                    <CardHeader>
+                        <CardDescription>Новини</CardDescription>
+                        <CardTitle>Дізнайтесь про івенти та новини ITBoost!</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 overflow-y-auto">
+                        <div className="flex flex-col gap-2">
+                            <Alert>
+                                <Terminal className="h-4 w-4" />
+                                <AlertTitle>Дана функція у розробці!</AlertTitle>
+                                <AlertDescription> 
+                                    Вибачте, але дана частина сервісу зараз знаходиться у розробці. В найближчему майбутньому ми вас сповищемо коли вона буде реалізована.
+                                </AlertDescription>
+                            </Alert>
+                        </div>
+                    </CardContent>
+                </Card>
 
             </div>
 
